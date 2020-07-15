@@ -32,6 +32,11 @@
       "value":"",
       "required":false
     },
+    "CREATECASE_TOKEN": {
+      "description": "Slack token for the contact slash command",
+      "value":"",
+      "required":false
+    },
     "SLACK_OPPORTUNITY_TOKEN": {
         "description": "Slack token for the pipeline slash command",
         "value":"",
