@@ -32,7 +32,7 @@
       "value":"",
       "required":false
     },
-    "CREATECASE_TOKEN": {
+    "SLACK_CREATECASE_TOKEN": {
       "description": "Slack token for the contact slash command",
       "value":"",
       "required":false
