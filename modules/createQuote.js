@@ -16,33 +16,51 @@ exports.execute = (req, res) => {
         params = req.body.text.split(":"),
         Name = params[0],
         OpportunityId = params[1];
-		force.create(oauthObj, "Quote",
-        {
-            Name: Name,
-            OpportunityId : "0064P00000lfN28"
-           
-
-        })
+		
+		q = "SELECT Id, Name FROM Opportunity WHERE Name = '" + OpportunityId + "'";
+		
+		
+		 force.query(oauthObj, q)
         .then(data => {
-            let fields = [];
-            fields.push({title: "OpportunityId", value: OpportunityId, short:false});
-            fields.push({title: "Name", value: Name, short:false});
-            fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
-            let message = {
-                text: "A new Quote has been created:",
-                attachments: [
-                    {color: "#F2CF5B", fields: fields}
-                ]
-            };
-            res.json(message);
-        })
-        .catch((error) => {
-            if (error.code == 401) {
-                res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+				 let Oppty = JSON.parse(data).records;
+				 force.create(oauthObj, "Quote",
+				 {
+					Name: Name,
+					OpportunityId : Oppty.Id
+				   
 
+				 })
+				.then(data => {
+							let fields = [];
+							fields.push({title: "OpportunityId", value: OpportunityId, short:false});
+							fields.push({title: "Name", value: Name, short:false});
+							fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
+							let message = {
+								text: "A new Quote has been created:",
+								attachments: [
+									{color: "#F2CF5B", fields: fields}
+								]
+							};
+							res.json(message);
+				})
+				.catch((error) => {
+						if (error.code == 401) {
+							res.send('Visit this URL to login to Salesforce: https://${req.hostname}/login/' + slackUserId);
+
+						} else {
+							res.send("An error as occurred");
+						}
+				});
+		})
+		.catch(error => {
+            if (error.code == 401) {
+                res.send('Visit this URL to login to Salesforce: https:');
             } else {
                 res.send("An error as occurred");
             }
         });
+		
+		
+		
 
 };
