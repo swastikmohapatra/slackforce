@@ -8,6 +8,7 @@ let express = require('express'),
     opportunity = require('./modules/opportunity'),
     _case = require('./modules/case'),
 	  _fetchcase = require('./modules/fetchcases'),
+	   _createquote = require('./modules/createQuote'),
     whoami = require('./modules/whoami'),
     actions = require('./modules/actions'),
     app = express();
@@ -27,6 +28,7 @@ app.post('/contact', contact.execute);
 app.post('/account', account.execute);
 app.post('/case', _case.execute);
 app.post('/fetchcase', _fetchcase.execute);
+app.post('/createquote',_createquote);
 app.post('/whoami', whoami.execute);
 app.post('/login', auth.loginLink);
 app.post('/logout', auth.logout);
