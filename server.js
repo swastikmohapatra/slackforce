@@ -28,7 +28,7 @@ app.post('/contact', contact.execute);
 app.post('/account', account.execute);
 app.post('/case', _case.execute);
 app.post('/fetchcase', _fetchcase.execute);
-app.post('/createquote',_createquote);
+app.post('/createquote',_createquote.execute);
 app.post('/whoami', whoami.execute);
 app.post('/login', auth.loginLink);
 app.post('/logout', auth.logout);
