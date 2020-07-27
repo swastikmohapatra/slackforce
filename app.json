@@ -43,6 +43,12 @@
         "required":false
 
     },
+	"SLACK_CREATEQUOTE_TOKEN": {
+        "description": "Slack token for the creating Quote",
+        "value":"",
+        "required":false
+
+    },
     "SLACK_CASE_TOKEN": {
         "description": "Slack token for the case slash command",
         "value":"",
