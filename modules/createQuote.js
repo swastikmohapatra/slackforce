@@ -17,7 +17,7 @@ exports.execute = (req, res) => {
         Name = params[0],
         OpportunityId = params[1];
 		var opptyId;
-		q = "SELECT Id, Name FROM Opportunity WHERE Name = '" + OpportunityId + "'";
+		var q = 'Select id,Name from Opportunity where Name = \'' +OpportunityId+'\'';
 		
 		
 		force.query(oauthObj, q)
